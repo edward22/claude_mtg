@@ -13,11 +13,16 @@ this whole skill is built on. `card_database.json` is the authority on
 what any given card actually does; it wins over the generic rules
 whenever a card's text says otherwise.
 
-**No live card lookups exist in this environment** (Scryfall etc. are
-network-blocked). If you hit a card whose exact wording you're unsure of
-mid-game, make the most standard ruling, log it, mark that card entry
-`"unverified": true` if it isn't already, and move on — don't stall the
-game.
+Card text in `card_database.json` for anything found via
+`mtg_engine/oracle.py` (a local Scryfall bulk-data lookup, see
+`mtg-import-deck`) is authoritative Oracle wording, not a guess — trust it
+fully. If you hit a card that's still marked `"unverified": true` (hand-
+added because it wasn't in the bulk dump) and its exact wording matters
+mid-game, you can look it up on the spot with
+`python3 -m mtg_engine.oracle lookup "<name>"` — if that finds it, merge
+it in the same way `mtg-import-deck` does. If a card genuinely isn't in
+the dump (brand-new card, typo) make the most standard ruling, log it, and
+move on — don't stall the game.
 
 ## State conventions (read/write `games/<game_id>/game_state.json` directly)
 

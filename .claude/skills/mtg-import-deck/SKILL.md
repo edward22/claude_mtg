@@ -7,10 +7,7 @@ description: Import an MTG Arena (MTGA) deck export .txt file as either the "use
 
 Goal: turn a raw MTGA export text file into (a) a parsed deck JSON the
 engine can shuffle into a library, and (b) confirmed rules-text entries in
-`card_database.json` for every card in it, since the game engine has no
-network access to look cards up live (Scryfall etc. are blocked in this
-sandbox) — the card database is the only source of truth for what a card
-actually does.
+`card_database.json` for every card in it.
 
 ## Steps
 
@@ -30,40 +27,46 @@ actually does.
    currently assumes standard 2-player constructed; flag it to the user if
    the count looks like a Commander/Limited deck instead).
 
-3. **Diff against the card database.** Read `card_database.json` (repo
-   root) and find which of `unique_card_names` are missing.
+3. **Look up every card against the local Oracle dump — this is the
+   primary, authoritative path:**
+   ```
+   python3 -m mtg_engine.oracle merge decks/<label>.json
+   ```
+   This reads `oracle-cards-*.jsonl.gz` at the repo root (a Scryfall
+   "Oracle Cards" bulk data file — see `mtg_engine/oracle.py`'s docstring
+   for where to get/refresh one) and merges an authoritative entry for
+   every name it finds straight into `card_database.json`: exact mana
+   cost, type line, P/T, keywords, and Oracle text, no guessing involved.
+   It prints `{"found": [...], "missing": [...]}`.
 
-4. **Fill in missing cards from your own MTG knowledge.** For each missing
-   card, add an entry to `card_database.json` keyed by exact card name:
+   Trust this over your own memory of a card — real Oracle text is
+   frequently more precise or has been updated by errata since training
+   (e.g. templating changes, functional reprints), and this has already
+   caught several cases where recalled wording was subtly wrong.
+
+4. **Only for names in `"missing"`** (not present in the bulk dump — e.g.
+   a brand-new set released after the dump was generated, or a name typo)
+   fall back to your own MTG knowledge and add the entry by hand, in the
+   same shape `oracle.py` produces:
    ```json
    {
      "name": "...", "mana_cost": "{1}{R}", "cmc": 2, "colors": ["R"],
-     "type_line": "Creature — Human Warrior", "power": 2, "toughness": 2,
+     "type_line": "Creature — Human Warrior", "power": "2", "toughness": "2",
      "loyalty": null, "keywords": ["First strike", "Haste"],
-     "oracle_text": "First strike, haste. Whenever ~ deals combat damage to a player, ..."
+     "oracle_text": "First strike, haste. Whenever this creature deals combat damage to a player, ..."
    }
    ```
-   - `mana_cost` uses `{}` symbols per pip, e.g. `{2}{U}{U}`; empty string
-     for lands/tokens with no mana cost.
-   - `oracle_text` should be the card's actual current Oracle wording as
-     best you know it — this is what mtg-play will adjudicate rulings
-     from, alongside `mtg_engine/rules_reference.md`.
-   - Basic lands just need `type_line: "Basic Land — <Type>"` and a note
-     like `({T}: Add {R}.)` in oracle_text.
-   - If you are **not confident** you have the exact current wording
-     (recent set, errata-heavy card, or you're simply unsure), still fill
-     in your best understanding but set `"unverified": true` on that
-     entry. The board renderer flags unverified cards with a `?` badge.
-   - Double-faced/adventure/split cards: represent both faces if it
-     matters for play (e.g. `"back_face": {...same shape...}`); note it
-     plainly since the engine doesn't have special DFC handling beyond
-     what you track by hand.
+   - Set `"unverified": true` on any hand-added entry you're not fully
+     confident about — the board renderer flags these with a `?` badge.
+   - Double-faced/split/adventure cards looked up via `oracle.py` already
+     get a `"back_face"` key in the same shape when relevant; do the same
+     by hand if you're adding one manually.
+   - If `oracle-cards-*.jsonl.gz` is missing entirely, tell the user and
+     fall back to doing this step for every card, same as before.
 
-5. **Report unverified cards to the user** at the end: "I've added N new
-   cards; I'm not fully confident about the exact wording of: X, Y — let
-   me know if you have the real Oracle text so I can correct it before we
-   play." Since there's no live card lookup available in this
-   environment, this is the main integrity check available.
+5. **Report to the user**: how many cards were found in the bulk dump vs.
+   filled in by hand, and list anything still `"unverified"` so they can
+   correct it if they know the real wording.
 
 6. **Ask which slot** this deck fills if not already told — `user` or
    `opponent` — and remember `decks/<label>.json` as that slot's deck for

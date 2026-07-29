@@ -24,12 +24,18 @@ by:
   (turn structure, priority/stack, combat, state-based actions, keywords)
   that Claude adjudicates from.
 - `card_database.json` — per-card mana cost, type, P/T, keywords, and
-  **Oracle text**, filled in from Claude's own MTG knowledge when a deck
-  is imported. This exists because **this environment has no network
-  access to Scryfall or any other card database** — the local file is the
-  only source of truth for what a card actually does, so it's worth
-  skimming after an import for any card flagged `"unverified": true` and
-  correcting if you know the real wording.
+  **Oracle text**, used for every ruling.
+- `mtg_engine/oracle.py` — looks card data up against a local Scryfall
+  "Oracle Cards" bulk data dump (`oracle-cards-*.jsonl.gz` at the repo
+  root — this environment has no network access to query Scryfall live,
+  so a local snapshot stands in for it) and merges authoritative entries
+  straight into `card_database.json`. This is the primary source `mtg-
+  import-deck` uses; Claude's own knowledge only fills in cards missing
+  from the dump (flagged `"unverified": true` — worth double-checking
+  those). Refresh the dump occasionally from
+  https://scryfall.com/docs/api/bulk-data ("Oracle Cards") to pick up new
+  sets; `oracle.py` always uses whichever `oracle-cards-*.jsonl.gz` sorts
+  latest by filename.
 
 ## Playing a game
 
@@ -51,10 +57,13 @@ Four Claude Code skills, meant to be used in order:
 
 ## Caveats
 
-- **No live rules lookups.** Card rulings come from Claude's own training
-  knowledge plus `mtg_engine/rules_reference.md`, not a live database.
-  For obscure or errata-heavy cards, double-check anything marked
-  `unverified` in `card_database.json`.
+- **No live network lookups.** Card data comes from the local
+  `oracle-cards-*.jsonl.gz` bulk dump (see above), which is authoritative
+  but a point-in-time snapshot — refresh it occasionally for new sets.
+  Anything genuinely missing from the dump falls back to Claude's own
+  knowledge and gets flagged `"unverified"` in `card_database.json`;
+  double-check those. Turn-structure/stack/combat rulings come from
+  `mtg_engine/rules_reference.md`.
 - **Hidden information lives in a plaintext file.** `game_state.json`
   contains the true library order and the opponent's hand — don't open it
   mid-game if you want the fog of war to feel real; the board artifact is
