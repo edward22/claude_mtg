@@ -1,0 +1,34 @@
+.mana-stacks {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.mana-stacks__column {
+  flex: 0 0 auto;
+  width: 96px;
+}
+
+.mana-stacks__header {
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.85;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.mana-stacks__count {
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+.mana-stacks__stack {
+  position: relative;
+}
+
+.mana-stacks__card {
+  position: absolute;
+  left: 0;
+  right: 0;
+}

@@ -5,12 +5,14 @@ import type { PoolCard, ScryfallCard } from "../types";
 import { useSealedStore } from "../store/sealedStore";
 import CardTile from "./CardTile";
 import ManaCurveChart from "./ManaCurveChart";
+import ManaValueStacks from "./ManaValueStacks";
 import LandPicker from "./LandPicker";
 import ExportModal from "./ExportModal";
 import PrintExportModal from "./PrintExportModal";
 import "./DeckBuilder.css";
 
 type SortMode = "rarity" | "color" | "cmc" | "name";
+type DeckView = "stacks" | "grid";
 
 const RARITY_ORDER: Record<string, number> = { mythic: 0, rare: 1, uncommon: 2, common: 3, special: 4, bonus: 4 };
 const COLOR_ORDER = ["W", "U", "B", "R", "G"];
@@ -54,6 +56,7 @@ export default function DeckBuilder() {
 
   const [setCards, setSetCards] = useState<ScryfallCard[]>([]);
   const [sortMode, setSortMode] = useState<SortMode>("rarity");
+  const [deckView, setDeckView] = useState<DeckView>("stacks");
   const [showExport, setShowExport] = useState(false);
   const [showPrint, setShowPrint] = useState(false);
 
@@ -104,14 +107,34 @@ export default function DeckBuilder() {
           <h3>
             Deck ({countNonLands(deckCards)} spells, {countLands(deckCards)} lands, {deckCards.length} total)
           </h3>
+          <div className="deck-builder__view-toggle">
+            <button
+              type="button"
+              className={`deck-builder__view-btn ${deckView === "stacks" ? "deck-builder__view-btn--active" : ""}`}
+              onClick={() => setDeckView("stacks")}
+            >
+              By mana value
+            </button>
+            <button
+              type="button"
+              className={`deck-builder__view-btn ${deckView === "grid" ? "deck-builder__view-btn--active" : ""}`}
+              onClick={() => setDeckView("grid")}
+            >
+              Grid
+            </button>
+          </div>
           <span className="deck-builder__hint">Tap a card to move it back to your pool.</span>
         </div>
-        <div className="deck-builder__grid">
-          {sortedDeck.map((pc) => (
-            <CardTile key={pc.uid} card={pc.card} foil={pc.foil} onClick={() => handleDeckCardClick(pc)} size="small" />
-          ))}
-          {sortedDeck.length === 0 && <p className="deck-builder__empty">No cards in your deck yet.</p>}
-        </div>
+        {deckView === "stacks" ? (
+          <ManaValueStacks cards={deckCards} onCardClick={handleDeckCardClick} />
+        ) : (
+          <div className="deck-builder__grid">
+            {sortedDeck.map((pc) => (
+              <CardTile key={pc.uid} card={pc.card} foil={pc.foil} onClick={() => handleDeckCardClick(pc)} size="small" />
+            ))}
+          </div>
+        )}
+        {deckCards.length === 0 && <p className="deck-builder__empty">No cards in your deck yet.</p>}
       </section>
 
       <LandPicker setCards={setCards} />
