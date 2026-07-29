@@ -15,12 +15,15 @@ export interface PrintLayout {
   cardHeightMm: number;
 }
 
-/** Presets balance legibility against paper use - "compact" fits a 40-card deck on two sides of one A4 sheet. */
+// Every preset is single-sided: printing a deck of N distinct cards
+// double-sided would put an unrelated card on the back of each cutout
+// (whatever landed at the same grid position on the next page), so we
+// don't offer that as a paper-saving option - density is the only lever.
 export const PRINT_PRESETS: { label: string; cardsPerPage: number }[] = [
   { label: "Large (9/page)", cardsPerPage: 9 },
   { label: "Medium (12/page)", cardsPerPage: 12 },
   { label: "Small (16/page)", cardsPerPage: 16 },
-  { label: "Compact (20/page) - fits 40 cards on 2 sides of A4", cardsPerPage: 20 },
+  { label: "Compact (20/page)", cardsPerPage: 20 },
   { label: "Tiny (25/page)", cardsPerPage: 25 },
 ];
 
@@ -55,16 +58,53 @@ function cardImageUrl(card: ScryfallCard): string | undefined {
   return card.image_uris?.normal ?? card.card_faces?.[0]?.image_uris?.normal;
 }
 
+/** Fetch + FileReader - works whenever the image host sends CORS headers. */
 async function fetchImageDataUrl(url: string): Promise<string> {
-  const res = await fetch(url, { mode: "cors" });
-  if (!res.ok) throw new Error(`Failed to fetch ${url}`);
+  const res = await fetch(url, { mode: "cors", referrerPolicy: "no-referrer" });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const blob = await res.blob();
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(reader.result as string);
-    reader.onerror = () => reject(reader.error);
+    reader.onerror = () => reject(reader.error ?? new Error("FileReader failed"));
     reader.readAsDataURL(blob);
   });
+}
+
+/** <img crossorigin> + canvas fallback - occasionally succeeds where fetch() is blocked. */
+async function loadImageViaCanvas(url: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      try {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) throw new Error("no 2d context");
+        ctx.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL("image/jpeg", 0.92));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    img.onerror = () => reject(new Error("image failed to load"));
+    img.src = url;
+  });
+}
+
+async function resolveImageDataUrl(url: string): Promise<string> {
+  try {
+    return await fetchImageDataUrl(url);
+  } catch (fetchErr) {
+    try {
+      return await loadImageViaCanvas(url);
+    } catch (canvasErr) {
+      console.warn(`[pdfExport] couldn't embed card image ${url}`, { fetchErr, canvasErr });
+      throw canvasErr;
+    }
+  }
 }
 
 async function mapWithConcurrency<T, R>(items: T[], limit: number, fn: (item: T, index: number) => Promise<R>): Promise<R[]> {
@@ -85,28 +125,37 @@ export interface PdfProgress {
   total: number;
 }
 
+export interface PdfResult {
+  blob: Blob;
+  /** Number of unique card images that couldn't be embedded (shown as text placeholders instead). */
+  failedImageCount: number;
+}
+
 /**
  * Builds a print-ready PDF of the given cards (one image per physical copy),
  * laid out on A4 pages at the requested density. Cards whose image can't be
- * fetched (network hiccup, etc.) fall back to a text placeholder so one bad
- * image doesn't sink the whole export.
+ * embedded (network hiccup, or a host that blocks cross-origin canvas/fetch
+ * access) fall back to a text placeholder so one bad image doesn't sink the
+ * whole export - failedImageCount reports how many so the UI can surface it.
  */
 export async function buildDeckPdf(
   cards: PoolCard[],
   cardsPerPage: number,
   onProgress?: (p: PdfProgress) => void
-): Promise<Blob> {
+): Promise<PdfResult> {
   const layout = computeLayout(cardsPerPage);
   const { jsPDF } = await import("jspdf");
 
   const uniqueUrls = [...new Set(cards.map((pc) => cardImageUrl(pc.card)).filter((u): u is string => !!u))];
   let loaded = 0;
+  let failedImageCount = 0;
   const urlToDataUrl = new Map<string, string | null>();
   await mapWithConcurrency(uniqueUrls, 6, async (url) => {
     try {
-      urlToDataUrl.set(url, await fetchImageDataUrl(url));
+      urlToDataUrl.set(url, await resolveImageDataUrl(url));
     } catch {
       urlToDataUrl.set(url, null);
+      failedImageCount += 1;
     } finally {
       loaded += 1;
       onProgress?.({ loaded, total: uniqueUrls.length });
@@ -142,8 +191,9 @@ export async function buildDeckPdf(
     const dataUrl = url ? urlToDataUrl.get(url) : null;
     if (dataUrl) {
       try {
-        doc.addImage(dataUrl, "JPEG", x, y, cardWidthMm, cardHeightMm, undefined, "FAST");
-      } catch {
+        doc.addImage(dataUrl, x, y, cardWidthMm, cardHeightMm, undefined, "FAST");
+      } catch (e) {
+        console.warn(`[pdfExport] jsPDF couldn't embed image for ${pc.card.name}`, e);
         drawPlaceholder(doc, pc, x, y, cardWidthMm, cardHeightMm);
       }
     } else {
@@ -151,7 +201,7 @@ export async function buildDeckPdf(
     }
   });
 
-  return doc.output("blob");
+  return { blob: doc.output("blob"), failedImageCount };
 }
 
 function drawPlaceholder(doc: JsPDF, pc: PoolCard, x: number, y: number, w: number, h: number) {

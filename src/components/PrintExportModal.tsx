@@ -13,23 +13,38 @@ export default function PrintExportModal({ deckCards, onClose }: PrintExportModa
   const [progress, setProgress] = useState<PdfProgress | null>(null);
   const [generating, setGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [failedImageCount, setFailedImageCount] = useState(0);
 
   const layout = useMemo(() => computeLayout(cardsPerPage), [cardsPerPage]);
   const pageCount = Math.max(1, Math.ceil(deckCards.length / layout.cardsPerPage));
 
   const generate = async () => {
+    // Open the tab synchronously, in direct response to the click, so Safari/iOS
+    // doesn't treat window.open() as a popup once the async image fetching below
+    // has finished (by then the "user gesture" that permits it has expired) -
+    // and so the app's own tab is never navigated away from (that was causing
+    // "back" to look like it reset the app: the PDF was replacing this tab).
+    const targetTab = window.open("", "_blank");
     setGenerating(true);
     setError(null);
+    setFailedImageCount(0);
     setProgress({ loaded: 0, total: deckCards.length });
     try {
-      const blob = await buildDeckPdf(deckCards, cardsPerPage, setProgress);
+      const { blob, failedImageCount } = await buildDeckPdf(deckCards, cardsPerPage, setProgress);
+      setFailedImageCount(failedImageCount);
       const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "sealed-deck-proxies.pdf";
-      a.click();
-      URL.revokeObjectURL(url);
+      if (targetTab) {
+        targetTab.location.href = url;
+      } else {
+        // Popup was blocked - fall back to an in-tab download link.
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "sealed-deck-proxies.pdf";
+        a.click();
+      }
+      setTimeout(() => URL.revokeObjectURL(url), 60_000);
     } catch (e) {
+      targetTab?.close();
       setError(e instanceof Error ? e.message : "Failed to generate PDF.");
     } finally {
       setGenerating(false);
@@ -46,7 +61,9 @@ export default function PrintExportModal({ deckCards, onClose }: PrintExportModa
           </button>
         </div>
         <p className="export-modal__hint">
-          Generates one card image per physical copy, tiled onto A4 pages. Print double-sided to use fewer sheets.
+          Generates one card image per physical copy, tiled onto A4 pages with cut guides. Each page is a single
+          sheet - printing double-sided isn't offered since a different card would end up on the back of each
+          cutout.
         </p>
 
         <label className="print-modal__field">
@@ -62,11 +79,18 @@ export default function PrintExportModal({ deckCards, onClose }: PrintExportModa
 
         <div className="banner">
           {deckCards.length} cards, {layout.cols}×{layout.rows} grid ({layout.cardsPerPage}/page) → {pageCount}{" "}
-          page{pageCount === 1 ? "" : "s"}
-          {pageCount === 2 ? " (print both sides of one A4 sheet)" : ""}.
+          sheet{pageCount === 1 ? "" : "s"} of paper.
         </div>
 
         {error && <div className="banner banner--error">{error}</div>}
+
+        {!generating && failedImageCount > 0 && (
+          <div className="banner banner--warning">
+            Couldn't load artwork for {failedImageCount} card{failedImageCount === 1 ? "" : "s"} - printed as a text
+            placeholder instead. This is usually a browser privacy setting blocking cross-site images; try again or
+            use a different browser if it affects many cards.
+          </div>
+        )}
 
         {generating && progress && (
           <div className="banner">
@@ -76,7 +100,7 @@ export default function PrintExportModal({ deckCards, onClose }: PrintExportModa
 
         <div className="export-modal__actions">
           <button type="button" className="btn btn--primary" onClick={generate} disabled={generating || deckCards.length === 0}>
-            {generating ? "Generating…" : "Download PDF"}
+            {generating ? "Generating…" : "Generate PDF"}
           </button>
         </div>
       </div>

@@ -8,6 +8,34 @@ export function isBasicLandCard(card: ScryfallCard): boolean {
   return card.type_line?.includes("Basic Land") ?? false;
 }
 
+// Layouts that aren't a normal single playable card - joke sticker sheets,
+// tokens, emblems, etc. - and so aren't meaningful to open in a sealed pool.
+const NON_STANDARD_LAYOUTS = new Set([
+  "token",
+  "double_faced_token",
+  "emblem",
+  "scheme",
+  "vanguard",
+  "planar",
+  "art_series",
+  "stickers",
+  "augment",
+  "host",
+]);
+
+/**
+ * Excludes silver-border/"acorn"-stamped Un-set joke cards and other
+ * non-standard game pieces (Attractions, Contraptions, sticker sheets, ...)
+ * that need special rules or components most players won't have on hand.
+ */
+export function isStandardPlayableCard(card: ScryfallCard): boolean {
+  if (card.border_color === "silver") return false;
+  if (card.security_stamp === "acorn") return false;
+  if (NON_STANDARD_LAYOUTS.has(card.layout)) return false;
+  if (card.type_line?.includes("Attraction") || card.type_line?.includes("Contraption")) return false;
+  return true;
+}
+
 function isMainRarityCard(card: ScryfallCard): boolean {
   return (
     card.lang === "en" &&
@@ -31,8 +59,9 @@ export interface BoosterCardPools {
  * full rarity pool (with a warning) when a set doesn't have enough booster
  * data yet - this happens for unreleased / freshly spoiled sets.
  */
-export function classifyCardsForBoosters(cards: ScryfallCard[]): BoosterCardPools {
+export function classifyCardsForBoosters(rawCards: ScryfallCard[]): BoosterCardPools {
   const warnings: string[] = [];
+  const cards = rawCards.filter(isStandardPlayableCard);
 
   const byRarity = (pool: ScryfallCard[], rarity: ScryfallCard["rarity"]) =>
     pool.filter((c) => c.rarity === rarity);
@@ -61,6 +90,15 @@ export function classifyCardsForBoosters(cards: ScryfallCard[]): BoosterCardPool
   }
   if (mythics.length < 1) {
     mythics = byRarity(allMainRarity, "mythic");
+  }
+
+  // A very small pool for a rarity means repeats are expected, not a randomness
+  // bug - this is common for sets that are still being previewed/spoiled.
+  if (rares.length > 0 && rares.length <= 3) {
+    warnings.push(`Only ${rares.length} rare${rares.length === 1 ? "" : "s"} available for this set so far - expect repeats until Scryfall has more spoiler data.`);
+  }
+  if (mythics.length > 0 && mythics.length <= 3) {
+    warnings.push(`Only ${mythics.length} mythic${mythics.length === 1 ? "" : "s"} available for this set so far - expect repeats until Scryfall has more spoiler data.`);
   }
 
   const boosterLands = cards.filter((c) => c.booster && isBasicLandCard(c));

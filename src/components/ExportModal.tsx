@@ -26,13 +26,21 @@ export default function ExportModal({ deckCards, sideboardCards, onClose }: Expo
   };
 
   const download = () => {
+    // Opened in a new tab rather than via an <a download> click: iOS Safari
+    // doesn't reliably honor the download attribute and instead navigates
+    // the current tab to view the file, which replaces the app itself -
+    // then "back" looks like it reset everything. Opening a new tab leaves
+    // this tab (and its state) untouched.
     const blob = new Blob([text], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "sealed-deck.txt";
-    a.click();
-    URL.revokeObjectURL(url);
+    const win = window.open(url, "_blank");
+    if (!win) {
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "sealed-deck.txt";
+      a.click();
+    }
+    setTimeout(() => URL.revokeObjectURL(url), 60_000);
   };
 
   return (

@@ -46,6 +46,7 @@ export interface ScryfallCard {
   nonfoil?: boolean;
   frame_effects?: string[];
   border_color?: string;
+  security_stamp?: string;
 }
 
 export interface ScryfallSet {
