@@ -15,7 +15,11 @@ by:
 - `mtg_engine/render.py` — renders `games/<id>/game_state.json` into a
   self-contained MTGA-style HTML board (life totals, battlefield, hand,
   stack, graveyard/library counts), published live via Claude's Artifact
-  tool and updated in place as the game progresses.
+  tool and updated in place as the game progresses. It also prints a
+  "Card reference" panel at the bottom of the board with full Oracle text
+  for every card currently on either battlefield or in your hand, so you
+  don't have to hover a tiny tooltip (or guess) to see what something
+  actually does mid-game. It never includes the opponent's hand contents.
 - `mtg_engine/rules_reference.md` — condensed MTG comprehensive rules
   (turn structure, priority/stack, combat, state-based actions, keywords)
   that Claude adjudicates from.

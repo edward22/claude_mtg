@@ -165,6 +165,41 @@ def render_battlefield(player: dict, card_db: dict) -> str:
     return "".join(parts)
 
 
+def render_reference_card(name: str, card_db: dict) -> str:
+    face = card_face(name, card_db)
+    border = color_border(face.get("colors", []))
+    pt = ""
+    if face.get("power") is not None and face.get("toughness") is not None:
+        pt = f'<span class="ref-pt">{html.escape(str(face["power"]))}/{html.escape(str(face["toughness"]))}</span>'
+    elif face.get("loyalty") is not None:
+        pt = f'<span class="ref-pt">Loyalty {html.escape(str(face["loyalty"]))}</span>'
+    unverified = (' <span class="unverified" title="Wording not confirmed against an official source">'
+                  '(unverified text)</span>') if face.get("unverified") else ""
+    text = html.escape(face.get("oracle_text", "") or "").replace("\n", "<br>")
+    return (
+        '<div class="ref-card" style="border-left-color:' + border + '">'
+        f'<div class="ref-head"><span class="ref-name">{html.escape(name)}</span>'
+        f'{render_mana_cost(face.get("mana_cost",""))}</div>'
+        f'<div class="ref-type">{html.escape(face.get("type_line",""))}{pt}</div>'
+        f'<div class="ref-text">{text}{unverified}</div>'
+        '</div>'
+    )
+
+
+def render_reference(state: dict, card_db: dict) -> str:
+    """Full oracle text for every card currently in a *public* zone: the
+    user's own hand, and both players' battlefields. Never includes the
+    opponent's hand (hidden information)."""
+    user = state["players"]["user"]
+    opp = state["players"]["opponent"]
+    names = set(user["hand"])
+    names.update(p["name"] for p in user["battlefield"])
+    names.update(p["name"] for p in opp["battlefield"])
+    if not names:
+        return '<div class="ref-empty">No cards in play or in hand yet.</div>'
+    return "".join(render_reference_card(n, card_db) for n in sorted(names))
+
+
 def render_board(game_id: str) -> str:
     state = load_json(GAMES_DIR / game_id / "game_state.json")
     card_db = load_json(CARD_DB_PATH)
@@ -221,6 +256,15 @@ def render_board(game_id: str) -> str:
   .mid-row {{ display:flex; gap:10px; align-items:flex-start; }}
   .log {{ margin-top:8px; background: rgba(0,0,0,.25); border-radius:8px; padding:6px 10px; font-size:11px; max-height:120px; overflow-y:auto; }}
   .log div {{ opacity:.85; padding:1px 0; }}
+  .reference {{ margin-top:10px; background: rgba(0,0,0,.2); border-radius:8px; padding:8px 10px; }}
+  .reference h4 {{ margin:0 0 8px; font-size:11px; text-transform:uppercase; opacity:.7; letter-spacing:.5px; }}
+  .ref-grid {{ display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:8px; }}
+  .ref-card {{ background: rgba(255,255,255,.06); border-left:3px solid #7a7a7a; border-radius:4px; padding:6px 8px; font-size:11px; }}
+  .ref-head {{ display:flex; justify-content:space-between; align-items:baseline; gap:6px; font-weight:600; }}
+  .ref-type {{ opacity:.7; font-size:10px; margin:2px 0 4px; display:flex; justify-content:space-between; }}
+  .ref-pt {{ font-weight:700; opacity:1; }}
+  .ref-text {{ line-height:1.4; }}
+  .ref-empty {{ opacity:.5; font-style:italic; font-size:12px; }}
 </style>
 <div class="mtg-board">
   <div class="topbar">
@@ -257,6 +301,11 @@ def render_board(game_id: str) -> str:
 
   <div class="log">
     {"".join(f"<div>{html.escape(l)}</div>" for l in state.get('log', [])[-12:])}
+  </div>
+
+  <div class="reference">
+    <h4>Card reference (full text for everything in play or in your hand)</h4>
+    <div class="ref-grid">{render_reference(state, card_db)}</div>
   </div>
 </div>
 """.strip()
