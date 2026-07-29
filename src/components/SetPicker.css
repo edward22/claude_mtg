@@ -1,0 +1,136 @@
+.set-picker {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+.set-picker h1 {
+  margin-bottom: 4px;
+}
+
+.set-picker__intro {
+  opacity: 0.75;
+  margin-bottom: 20px;
+}
+
+.set-picker__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.set-picker__controls input[type="search"] {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: inherit;
+}
+
+.set-picker__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.set-picker__list {
+  max-height: 50vh;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.set-picker__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.set-picker__row:last-child {
+  border-bottom: none;
+}
+
+.set-picker__row:hover,
+.set-picker__row--selected {
+  background: var(--surface-hover);
+}
+
+.set-picker__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  filter: invert(var(--icon-invert, 0));
+}
+
+.set-picker__name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.set-picker__code {
+  opacity: 0.6;
+  font-variant: small-caps;
+  font-size: 13px;
+}
+
+.set-picker__meta {
+  opacity: 0.55;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.set-picker__empty {
+  padding: 20px;
+  opacity: 0.6;
+}
+
+.set-picker__start {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.set-picker__start label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.set-picker__start input[type="number"] {
+  width: 72px;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: inherit;
+}

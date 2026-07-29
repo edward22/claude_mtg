@@ -1,0 +1,66 @@
+.land-picker {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 16px;
+}
+
+.land-picker h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+
+.land-picker__hint {
+  font-size: 12px;
+  opacity: 0.6;
+  margin: 0 0 12px;
+}
+
+.land-picker__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.land-picker__item {
+  width: 96px;
+}
+
+.land-picker__item img {
+  width: 96px;
+  aspect-ratio: 63 / 88;
+  object-fit: cover;
+  border-radius: 4.5% / 3.2%;
+  display: block;
+}
+
+.land-picker__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.land-picker__controls button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-hover);
+  color: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.land-picker__controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.land-picker__count {
+  min-width: 18px;
+  text-align: center;
+  font-weight: 600;
+}

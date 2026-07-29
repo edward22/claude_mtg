@@ -1,0 +1,50 @@
+.pack-opener {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 16px 64px;
+}
+
+.pack-opener__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+.pack-opener__reveal {
+  margin-top: 24px;
+}
+
+.pack-opener__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.pack-opener__card {
+  animation: card-reveal 0.35s ease both;
+}
+
+@keyframes card-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.9) rotate(-4deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.pack-opener__pool {
+  margin-top: 32px;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.pack-opener__pool summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 8px;
+}

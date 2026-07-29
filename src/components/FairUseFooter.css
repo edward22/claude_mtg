@@ -1,0 +1,17 @@
+.fair-use-footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  font-size: 11px;
+  line-height: 1.6;
+  opacity: 0.55;
+  text-align: center;
+}
+
+.fair-use-footer a {
+  color: inherit;
+}
+
+.fair-use-footer p {
+  margin: 0 0 4px;
+}
