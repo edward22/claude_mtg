@@ -12,6 +12,7 @@ interface PrintExportModalProps {
 export default function PrintExportModal({ deckCards, onClose }: PrintExportModalProps) {
   const [cardsPerPage, setCardsPerPage] = useState(20);
   const [printing, setPrinting] = useState(false);
+  const [progress, setProgress] = useState<{ loaded: number; total: number } | null>(null);
 
   const layout = useMemo(() => computeLayout(cardsPerPage), [cardsPerPage]);
   const pageCount = Math.max(1, Math.ceil(deckCards.length / layout.cardsPerPage));
@@ -47,11 +48,20 @@ export default function PrintExportModal({ deckCards, onClose }: PrintExportModa
           sheet{pageCount === 1 ? "" : "s"} of paper.
         </div>
 
+        {printing && progress && progress.loaded < progress.total && (
+          <div className="banner">
+            Loading card images… {progress.loaded}/{progress.total}
+          </div>
+        )}
+
         <div className="export-modal__actions">
           <button
             type="button"
             className="btn btn--primary"
-            onClick={() => setPrinting(true)}
+            onClick={() => {
+              setProgress(null);
+              setPrinting(true);
+            }}
             disabled={printing || deckCards.length === 0}
           >
             {printing ? "Preparing…" : "Print / Save as PDF"}
@@ -63,6 +73,7 @@ export default function PrintExportModal({ deckCards, onClose }: PrintExportModa
         <PrintSheet
           cards={deckCards}
           cardsPerPage={cardsPerPage}
+          onProgress={(loaded, total) => setProgress({ loaded, total })}
           onDone={() => {
             setPrinting(false);
             onClose();
