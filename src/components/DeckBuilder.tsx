@@ -7,6 +7,7 @@ import CardTile from "./CardTile";
 import ManaCurveChart from "./ManaCurveChart";
 import LandPicker from "./LandPicker";
 import ExportModal from "./ExportModal";
+import PrintExportModal from "./PrintExportModal";
 import "./DeckBuilder.css";
 
 type SortMode = "rarity" | "color" | "cmc" | "name";
@@ -54,6 +55,7 @@ export default function DeckBuilder() {
   const [setCards, setSetCards] = useState<ScryfallCard[]>([]);
   const [sortMode, setSortMode] = useState<SortMode>("rarity");
   const [showExport, setShowExport] = useState(false);
+  const [showPrint, setShowPrint] = useState(false);
 
   useEffect(() => {
     if (!setCode) return;
@@ -86,6 +88,9 @@ export default function DeckBuilder() {
               <option value="name">Name</option>
             </select>
           </label>
+          <button type="button" className="btn" onClick={() => setShowPrint(true)}>
+            Print proxies (PDF)
+          </button>
           <button type="button" className="btn btn--primary" onClick={() => setShowExport(true)}>
             Export to MTGA
           </button>
@@ -127,6 +132,7 @@ export default function DeckBuilder() {
       {showExport && (
         <ExportModal deckCards={deckCards} sideboardCards={sideboardCards} onClose={() => setShowExport(false)} />
       )}
+      {showPrint && <PrintExportModal deckCards={sortedDeck} onClose={() => setShowPrint(false)} />}
     </div>
   );
 }

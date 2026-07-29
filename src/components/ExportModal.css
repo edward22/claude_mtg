@@ -66,3 +66,20 @@
   gap: 10px;
   flex-wrap: wrap;
 }
+
+.print-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.print-modal__field select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: inherit;
+  font-size: 14px;
+}
