@@ -89,7 +89,7 @@ export default function DeckBuilder() {
             </select>
           </label>
           <button type="button" className="btn" onClick={() => setShowPrint(true)}>
-            Print proxies (PDF)
+            Print proxies
           </button>
           <button type="button" className="btn btn--primary" onClick={() => setShowExport(true)}>
             Export to MTGA

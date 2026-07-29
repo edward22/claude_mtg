@@ -1,4 +1,5 @@
 import type { ScryfallCard } from "../types";
+import { cardImageUrl } from "../lib/cardImage";
 import "./CardTile.css";
 
 interface CardTileProps {
@@ -7,10 +8,6 @@ interface CardTileProps {
   onClick?: () => void;
   actionLabel?: string;
   size?: "small" | "normal";
-}
-
-function cardImageUrl(card: ScryfallCard): string | undefined {
-  return card.image_uris?.normal ?? card.card_faces?.[0]?.image_uris?.normal;
 }
 
 export default function CardTile({ card, foil, onClick, actionLabel, size = "normal" }: CardTileProps) {

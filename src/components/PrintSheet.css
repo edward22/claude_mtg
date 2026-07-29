@@ -1,0 +1,59 @@
+.print-sheet {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body > #root {
+    display: none !important;
+  }
+
+  .print-sheet {
+    display: block !important;
+  }
+}
+
+.print-page {
+  width: 210mm;
+  height: 297mm;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  break-after: page;
+}
+
+.print-page:last-child {
+  break-after: auto;
+}
+
+.print-card {
+  box-sizing: border-box;
+  border: 0.3mm dashed #999;
+  overflow: hidden;
+  break-inside: avoid;
+}
+
+.print-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.print-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2mm;
+  background: #222;
+  color: #eee;
+  font-size: 2.6mm;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
