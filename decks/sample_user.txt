@@ -1,0 +1,16 @@
+Deck
+20 Mountain (M21) 269
+4 Goblin Guide (ZNR) 138
+4 Monastery Swiftspear (KTK) 116
+4 Ash Zealot (ISD) 128
+4 Hellrider (DKA) 85
+4 Lightning Bolt (M11) 146
+4 Shock (M20) 156
+4 Lava Spike (CHK) 128
+4 Wild Slash (DTK) 91
+4 Eidolon of the Great Revel (JOU) 91
+4 Skullcrack (M15) 148
+
+Sideboard
+2 Searing Blood (M15) 149
+2 Smash to Smithereens (SOM) 90

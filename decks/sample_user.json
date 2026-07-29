@@ -1,0 +1,79 @@
+{
+  "source_file": "decks/sample_user.txt",
+  "mainboard_count": 60,
+  "sections": {
+    "deck": [
+      {
+        "count": 20,
+        "name": "Mountain"
+      },
+      {
+        "count": 4,
+        "name": "Goblin Guide"
+      },
+      {
+        "count": 4,
+        "name": "Monastery Swiftspear"
+      },
+      {
+        "count": 4,
+        "name": "Ash Zealot"
+      },
+      {
+        "count": 4,
+        "name": "Hellrider"
+      },
+      {
+        "count": 4,
+        "name": "Lightning Bolt"
+      },
+      {
+        "count": 4,
+        "name": "Shock"
+      },
+      {
+        "count": 4,
+        "name": "Lava Spike"
+      },
+      {
+        "count": 4,
+        "name": "Wild Slash"
+      },
+      {
+        "count": 4,
+        "name": "Eidolon of the Great Revel"
+      },
+      {
+        "count": 4,
+        "name": "Skullcrack"
+      }
+    ],
+    "sideboard": [
+      {
+        "count": 2,
+        "name": "Searing Blood"
+      },
+      {
+        "count": 2,
+        "name": "Smash to Smithereens"
+      }
+    ],
+    "commander": [],
+    "companion": []
+  },
+  "unique_card_names": [
+    "Ash Zealot",
+    "Eidolon of the Great Revel",
+    "Goblin Guide",
+    "Hellrider",
+    "Lava Spike",
+    "Lightning Bolt",
+    "Monastery Swiftspear",
+    "Mountain",
+    "Searing Blood",
+    "Shock",
+    "Skullcrack",
+    "Smash to Smithereens",
+    "Wild Slash"
+  ]
+}

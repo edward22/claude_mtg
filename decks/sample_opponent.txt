@@ -1,0 +1,16 @@
+Deck
+20 Island (M21) 271
+4 Merfolk Looter (10E) 78
+4 Man-o'-War (7ED) 92
+4 Wind Drake (M19) 82
+4 Aven Fisher (10E) 65
+4 Counterspell (7ED) 65
+4 Mana Leak (M11) 63
+4 Opt (DOM) 60
+4 Unsummon (M19) 79
+4 Vapor Snag (NPH) 76
+4 Frost Breath (BFZ) 43
+
+Sideboard
+2 Negate (M19) 52
+2 Dispel (RIX) 42

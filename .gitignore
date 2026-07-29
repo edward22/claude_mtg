@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+# In-progress game saves are session-local by default; remove this line
+# (or `git add -f`) if you want to commit a specific game to share/replay it.
+games/*/
+!games/.gitkeep

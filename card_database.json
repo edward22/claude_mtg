@@ -1,0 +1,148 @@
+{
+  "Mountain": {
+    "name": "Mountain", "mana_cost": "", "cmc": 0, "colors": [],
+    "type_line": "Basic Land — Mountain", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [], "oracle_text": "({T}: Add {R}.)"
+  },
+  "Island": {
+    "name": "Island", "mana_cost": "", "cmc": 0, "colors": [],
+    "type_line": "Basic Land — Island", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [], "oracle_text": "({T}: Add {U}.)"
+  },
+  "Goblin Guide": {
+    "name": "Goblin Guide", "mana_cost": "{R}", "cmc": 1, "colors": ["R"],
+    "type_line": "Creature — Goblin Scout", "power": 2, "toughness": 2, "loyalty": null,
+    "keywords": ["Haste"],
+    "oracle_text": "Haste. Whenever Goblin Guide attacks, defending player reveals the top card of their library. If it's a land card, that player puts it into their hand."
+  },
+  "Monastery Swiftspear": {
+    "name": "Monastery Swiftspear", "mana_cost": "{R}", "cmc": 1, "colors": ["R"],
+    "type_line": "Creature — Human Monk", "power": 1, "toughness": 2, "loyalty": null,
+    "keywords": ["Haste", "Prowess"],
+    "oracle_text": "Haste. Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.)"
+  },
+  "Ash Zealot": {
+    "name": "Ash Zealot", "mana_cost": "{1}{R}", "cmc": 2, "colors": ["R"],
+    "type_line": "Creature — Human Warrior", "power": 2, "toughness": 2, "loyalty": null,
+    "keywords": ["First strike", "Haste"],
+    "oracle_text": "First strike, haste. Whenever Ash Zealot deals combat damage to a player, exile the top card of that player's graveyard."
+  },
+  "Hellrider": {
+    "name": "Hellrider", "mana_cost": "{2}{R}{R}", "cmc": 4, "colors": ["R"],
+    "type_line": "Creature — Devil", "power": 3, "toughness": 3, "loyalty": null,
+    "keywords": ["Haste"],
+    "oracle_text": "Haste. Whenever a creature you control attacks, Hellrider deals 1 damage to the player or planeswalker it's attacking."
+  },
+  "Lightning Bolt": {
+    "name": "Lightning Bolt", "mana_cost": "{R}", "cmc": 1, "colors": ["R"],
+    "type_line": "Instant", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [], "oracle_text": "Lightning Bolt deals 3 damage to any target."
+  },
+  "Shock": {
+    "name": "Shock", "mana_cost": "{R}", "cmc": 1, "colors": ["R"],
+    "type_line": "Instant", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [], "oracle_text": "Shock deals 2 damage to any target."
+  },
+  "Lava Spike": {
+    "name": "Lava Spike", "mana_cost": "{R}", "cmc": 1, "colors": ["R"],
+    "type_line": "Sorcery — Arcane", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [], "oracle_text": "Lava Spike deals 3 damage to target player or planeswalker."
+  },
+  "Wild Slash": {
+    "name": "Wild Slash", "mana_cost": "{R}", "cmc": 1, "colors": ["R"],
+    "type_line": "Instant", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [],
+    "oracle_text": "Wild Slash deals 2 damage to any target. This spell can't be countered by spells."
+  },
+  "Eidolon of the Great Revel": {
+    "name": "Eidolon of the Great Revel", "mana_cost": "{R}{R}", "cmc": 2, "colors": ["R"],
+    "type_line": "Enchantment Creature — Nymph", "power": 2, "toughness": 2, "loyalty": null,
+    "keywords": [],
+    "oracle_text": "Whenever a player casts a noncreature spell, Eidolon of the Great Revel deals 2 damage to that player."
+  },
+  "Skullcrack": {
+    "name": "Skullcrack", "mana_cost": "{1}{R}", "cmc": 2, "colors": ["R"],
+    "type_line": "Instant", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [],
+    "oracle_text": "Skullcrack deals 3 damage to target player or planeswalker. That player or that planeswalker's controller can't gain life for the rest of the turn.",
+    "unverified": true
+  },
+  "Searing Blood": {
+    "name": "Searing Blood", "mana_cost": "{R}{R}", "cmc": 2, "colors": ["R"],
+    "type_line": "Sorcery", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [],
+    "oracle_text": "Searing Blood deals 2 damage to target creature. If that creature would die this turn, Searing Blood deals 3 damage to that creature's controller.",
+    "unverified": true
+  },
+  "Smash to Smithereens": {
+    "name": "Smash to Smithereens", "mana_cost": "{1}{R}", "cmc": 2, "colors": ["R"],
+    "type_line": "Instant", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [],
+    "oracle_text": "Destroy target artifact. Smash to Smithereens deals 3 damage to that artifact's controller."
+  },
+  "Merfolk Looter": {
+    "name": "Merfolk Looter", "mana_cost": "{1}{U}", "cmc": 2, "colors": ["U"],
+    "type_line": "Creature — Merfolk Rogue", "power": 1, "toughness": 1, "loyalty": null,
+    "keywords": [],
+    "oracle_text": "{T}: Draw a card, then discard a card."
+  },
+  "Man-o'-War": {
+    "name": "Man-o'-War", "mana_cost": "{2}{U}", "cmc": 3, "colors": ["U"],
+    "type_line": "Creature — Homarid Soldier", "power": 2, "toughness": 2, "loyalty": null,
+    "keywords": [],
+    "oracle_text": "When Man-o'-War enters the battlefield, return target creature to its owner's hand."
+  },
+  "Wind Drake": {
+    "name": "Wind Drake", "mana_cost": "{2}{U}", "cmc": 3, "colors": ["U"],
+    "type_line": "Creature — Drake", "power": 2, "toughness": 2, "loyalty": null,
+    "keywords": ["Flying"], "oracle_text": "Flying"
+  },
+  "Aven Fisher": {
+    "name": "Aven Fisher", "mana_cost": "{3}{U}", "cmc": 4, "colors": ["U"],
+    "type_line": "Creature — Bird Soldier", "power": 2, "toughness": 2, "loyalty": null,
+    "keywords": ["Flying"],
+    "oracle_text": "Flying. When Aven Fisher enters the battlefield, draw a card."
+  },
+  "Counterspell": {
+    "name": "Counterspell", "mana_cost": "{U}{U}", "cmc": 2, "colors": ["U"],
+    "type_line": "Instant", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [], "oracle_text": "Counter target spell."
+  },
+  "Mana Leak": {
+    "name": "Mana Leak", "mana_cost": "{1}{U}", "cmc": 2, "colors": ["U"],
+    "type_line": "Instant", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [], "oracle_text": "Counter target spell unless its controller pays {3}."
+  },
+  "Opt": {
+    "name": "Opt", "mana_cost": "{U}", "cmc": 1, "colors": ["U"],
+    "type_line": "Instant", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [], "oracle_text": "Scry 1. Draw a card."
+  },
+  "Unsummon": {
+    "name": "Unsummon", "mana_cost": "{U}", "cmc": 1, "colors": ["U"],
+    "type_line": "Instant", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [], "oracle_text": "Return target creature to its owner's hand."
+  },
+  "Vapor Snag": {
+    "name": "Vapor Snag", "mana_cost": "{U}", "cmc": 1, "colors": ["U"],
+    "type_line": "Instant", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [],
+    "oracle_text": "Return target creature to its owner's hand. Its owner loses 1 life."
+  },
+  "Frost Breath": {
+    "name": "Frost Breath", "mana_cost": "{1}{U}", "cmc": 2, "colors": ["U"],
+    "type_line": "Instant", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [],
+    "oracle_text": "Tap up to two target creatures. Put a stun counter on each of them. (If a permanent with a stun counter would become untapped, remove one from it instead.)"
+  },
+  "Negate": {
+    "name": "Negate", "mana_cost": "{1}{U}", "cmc": 2, "colors": ["U"],
+    "type_line": "Instant", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [], "oracle_text": "Counter target noncreature spell."
+  },
+  "Dispel": {
+    "name": "Dispel", "mana_cost": "{U}", "cmc": 1, "colors": ["U"],
+    "type_line": "Instant", "power": null, "toughness": null, "loyalty": null,
+    "keywords": [], "oracle_text": "Counter target instant spell."
+  }
+}

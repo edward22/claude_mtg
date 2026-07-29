@@ -1,0 +1,79 @@
+{
+  "source_file": "decks/sample_opponent.txt",
+  "mainboard_count": 60,
+  "sections": {
+    "deck": [
+      {
+        "count": 20,
+        "name": "Island"
+      },
+      {
+        "count": 4,
+        "name": "Merfolk Looter"
+      },
+      {
+        "count": 4,
+        "name": "Man-o'-War"
+      },
+      {
+        "count": 4,
+        "name": "Wind Drake"
+      },
+      {
+        "count": 4,
+        "name": "Aven Fisher"
+      },
+      {
+        "count": 4,
+        "name": "Counterspell"
+      },
+      {
+        "count": 4,
+        "name": "Mana Leak"
+      },
+      {
+        "count": 4,
+        "name": "Opt"
+      },
+      {
+        "count": 4,
+        "name": "Unsummon"
+      },
+      {
+        "count": 4,
+        "name": "Vapor Snag"
+      },
+      {
+        "count": 4,
+        "name": "Frost Breath"
+      }
+    ],
+    "sideboard": [
+      {
+        "count": 2,
+        "name": "Negate"
+      },
+      {
+        "count": 2,
+        "name": "Dispel"
+      }
+    ],
+    "commander": [],
+    "companion": []
+  },
+  "unique_card_names": [
+    "Aven Fisher",
+    "Counterspell",
+    "Dispel",
+    "Frost Breath",
+    "Island",
+    "Man-o'-War",
+    "Mana Leak",
+    "Merfolk Looter",
+    "Negate",
+    "Opt",
+    "Unsummon",
+    "Vapor Snag",
+    "Wind Drake"
+  ]
+}
