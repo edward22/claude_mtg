@@ -24,15 +24,18 @@ const NON_STANDARD_LAYOUTS = new Set([
 ]);
 
 /**
- * Excludes silver-border/"acorn"-stamped Un-set joke cards and other
+ * Excludes silver-border/"acorn"-stamped Un-set joke cards, other
  * non-standard game pieces (Attractions, Contraptions, sticker sheets, ...)
- * that need special rules or components most players won't have on hand.
+ * that need special rules or components most players won't have on hand,
+ * and full-art/textless printings that don't show rules text on the card.
  */
 export function isStandardPlayableCard(card: ScryfallCard): boolean {
   if (card.border_color === "silver") return false;
   if (card.security_stamp === "acorn") return false;
   if (NON_STANDARD_LAYOUTS.has(card.layout)) return false;
   if (card.type_line?.includes("Attraction") || card.type_line?.includes("Contraption")) return false;
+  if (card.full_art) return false;
+  if (card.textless) return false;
   return true;
 }
 

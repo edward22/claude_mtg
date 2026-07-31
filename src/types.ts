@@ -40,6 +40,7 @@ export interface ScryfallCard {
   lang: string;
   digital: boolean;
   full_art?: boolean;
+  textless?: boolean;
   promo?: boolean;
   variation?: boolean;
   foil?: boolean;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchCardByExactName } from "../api/scryfall";
-import { isBasicLandCard } from "../lib/boosterSim";
+import { isBasicLandCard, isStandardPlayableCard } from "../lib/boosterSim";
 import type { BasicLandName, ScryfallCard } from "../types";
 import { useSealedStore } from "../store/sealedStore";
 import "./LandPicker.css";
@@ -16,7 +16,7 @@ export default function LandPicker({ setCards }: { setCards: ScryfallCard[] }) {
 
   useEffect(() => {
     let cancelled = false;
-    const inSetBasics = setCards.filter(isBasicLandCard);
+    const inSetBasics = setCards.filter((c) => isBasicLandCard(c) && isStandardPlayableCard(c));
 
     async function resolve() {
       const resolved: Partial<Record<BasicLandName, ScryfallCard>> = {};
