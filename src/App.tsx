@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSealedStore } from "./store/sealedStore";
 import SetPicker from "./components/SetPicker";
 import PackOpener from "./components/PackOpener";
@@ -15,8 +15,17 @@ function App() {
   const openedPacks = useSealedStore((s) => s.openedPacks);
   const resetSealedPool = useSealedStore((s) => s.resetSealedPool);
 
-  const allOpened = openedPacks.length >= packCount;
-  const [tab, setTab] = useState<Tab>(allOpened ? "deck" : "packs");
+  const [tab, setTab] = useState<Tab>("packs");
+
+  // Re-derive which tab to land on whenever a sealed pool starts (fresh or
+  // resumed from a persisted session) - without this, starting a new event
+  // from the Deck Builder tab left you stranded there instead of on Open
+  // Packs, since local tab state otherwise never resyncs on its own.
+  useEffect(() => {
+    if (setCode) setTab(openedPacks.length >= packCount ? "deck" : "packs");
+    // Deliberately only on setCode change - not on every pack opened.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setCode]);
 
   return (
     <div className="app">

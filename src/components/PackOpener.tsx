@@ -47,9 +47,12 @@ export default function PackOpener() {
 
   const openAllRemaining = () => {
     if (!pools || remaining <= 0) return;
+    const startIndex = openedPacks.length;
     const packs = Array.from({ length: remaining }, () => generatePack(pools));
     addOpenedPacks(packs);
-    setRevealPack(null);
+    // Still reveal the last pack of the batch with the same animation as
+    // opening one at a time, rather than skipping straight to the pool view.
+    setRevealPack(startIndex + packs.length - 1);
   };
 
   const totalOpenedCards = useMemo(() => openedPacks.flat().length, [openedPacks]);
