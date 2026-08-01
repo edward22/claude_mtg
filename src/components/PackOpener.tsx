@@ -15,7 +15,7 @@ export default function PackOpener() {
   const [pools, setPools] = useState<BoosterCardPools | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [revealPack, setRevealPack] = useState<number | null>(null);
+  const [showReveal, setShowReveal] = useState(false);
   const [showFullPool, setShowFullPool] = useState(false);
 
   useEffect(() => {
@@ -36,24 +36,22 @@ export default function PackOpener() {
   }, [setCode]);
 
   const remaining = packCount - openedPacks.length;
-  const latestPack = revealPack !== null ? openedPacks[revealPack] : null;
+  // Always the actual last pack in the store, recomputed fresh every render -
+  // never a separately-tracked index that a double-fired click (a known
+  // touch-device quirk) could leave pointing at a stale pack while the
+  // store itself has already moved on.
+  const latestPack = showReveal ? openedPacks[openedPacks.length - 1] : null;
 
   const openOne = () => {
     if (!pools) return;
-    const pack = generatePack(pools);
-    const newIndex = openedPacks.length;
-    addOpenedPacks([pack]);
-    setRevealPack(newIndex);
+    addOpenedPacks([generatePack(pools)]);
+    setShowReveal(true);
   };
 
   const openAllRemaining = () => {
     if (!pools || remaining <= 0) return;
-    const startIndex = openedPacks.length;
-    const packs = Array.from({ length: remaining }, () => generatePack(pools));
-    addOpenedPacks(packs);
-    // Still reveal the last pack of the batch with the same animation as
-    // opening one at a time, rather than skipping straight to the pool view.
-    setRevealPack(startIndex + packs.length - 1);
+    addOpenedPacks(Array.from({ length: remaining }, () => generatePack(pools)));
+    setShowReveal(true);
   };
 
   const totalOpenedCards = useMemo(() => openedPacks.flat().length, [openedPacks]);
@@ -89,7 +87,7 @@ export default function PackOpener() {
 
       {latestPack && (
         <div className="pack-opener__reveal">
-          <h3>Pack {revealPack! + 1}</h3>
+          <h3>Pack {openedPacks.length}</h3>
           <div className="pack-opener__grid">
             {latestPack.map((pc, i) => (
               <div key={pc.uid} className="pack-opener__card" style={{ animationDelay: `${i * 60}ms` }}>
