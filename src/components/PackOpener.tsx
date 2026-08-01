@@ -16,6 +16,7 @@ export default function PackOpener() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [revealPack, setRevealPack] = useState<number | null>(null);
+  const [showFullPool, setShowFullPool] = useState(false);
 
   useEffect(() => {
     if (!setCode) return;
@@ -99,13 +100,19 @@ export default function PackOpener() {
         </div>
       )}
 
-      <details className="pack-opener__pool" open={!latestPack && totalOpenedCards > 0}>
+      <details
+        className="pack-opener__pool"
+        open={showFullPool}
+        onToggle={(e) => setShowFullPool(e.currentTarget.open)}
+      >
         <summary>Full pool so far ({totalOpenedCards} cards)</summary>
-        <div className="pack-opener__grid">
-          {openedPacks.flat().map((pc) => (
-            <CardTile key={pc.uid} card={pc.card} foil={pc.foil} size="small" />
-          ))}
-        </div>
+        {showFullPool && (
+          <div className="pack-opener__grid">
+            {openedPacks.flat().map((pc) => (
+              <CardTile key={pc.uid} card={pc.card} foil={pc.foil} size="small" />
+            ))}
+          </div>
+        )}
       </details>
     </div>
   );
