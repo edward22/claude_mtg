@@ -95,8 +95,21 @@ export function classifyCardsForBoosters(rawCards: ScryfallCard[]): BoosterCardP
     mythics = byRarity(allMainRarity, "mythic");
   }
 
-  // A very small pool for a rarity means repeats are expected, not a randomness
-  // bug - this is common for sets that are still being previewed/spoiled.
+  // A very small pool for a rarity means repeats are mathematically forced,
+  // not a randomness bug - this is common for sets that are still being
+  // previewed/spoiled and only have a handful of cards revealed so far.
+  // Every pack needs 10 commons and 3 uncommons, so state the actual pool
+  // size rather than a vague "expect repeats" - the number makes it obvious.
+  if (commons.length > 0 && commons.length < 10) {
+    warnings.push(
+      `Only ${commons.length} common${commons.length === 1 ? "" : "s"} available for this set so far, but each pack needs 10 - expect heavy repeats until Scryfall has more spoiler data.`
+    );
+  }
+  if (uncommons.length > 0 && uncommons.length < 3) {
+    warnings.push(
+      `Only ${uncommons.length} uncommon${uncommons.length === 1 ? "" : "s"} available for this set so far, but each pack needs 3 - expect repeats until Scryfall has more spoiler data.`
+    );
+  }
   if (rares.length > 0 && rares.length <= 3) {
     warnings.push(`Only ${rares.length} rare${rares.length === 1 ? "" : "s"} available for this set so far - expect repeats until Scryfall has more spoiler data.`);
   }
@@ -119,14 +132,26 @@ export function classifyCardsForBoosters(rawCards: ScryfallCard[]): BoosterCardP
   return { commons, uncommons, rares, mythics, lands, warnings };
 }
 
+// `array.sort(() => Math.random() - 0.5)` is a common but genuinely biased
+// way to shuffle - the result distribution depends on the sort algorithm's
+// comparison pattern, not a uniform permutation. Fisher-Yates is correct.
+function shuffle<T>(pool: T[]): T[] {
+  const result = [...pool];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
 function sampleWithoutReplacement<T>(pool: T[], count: number): T[] {
   if (!pool.length) return [];
-  const shuffled = [...pool].sort(() => Math.random() - 0.5);
+  let shuffled = shuffle(pool);
   const picks: T[] = [];
   for (let i = 0; i < count; i++) {
     picks.push(shuffled[i % shuffled.length]);
     // Reshuffle once we've wrapped around so repeats aren't in a fixed pattern.
-    if ((i + 1) % shuffled.length === 0) shuffled.sort(() => Math.random() - 0.5);
+    if ((i + 1) % shuffled.length === 0) shuffled = shuffle(pool);
   }
   return picks;
 }
