@@ -376,5 +376,354 @@
     "loyalty": null,
     "keywords": [],
     "oracle_text": "Counter target instant spell."
+  },
+  "Gollum, Silent Slinker // Meager Meal": {
+    "name": "Gollum, Silent Slinker // Meager Meal",
+    "mana_cost": "{3}{B}",
+    "cmc": 4,
+    "colors": [
+      "B"
+    ],
+    "type_line": "Legendary Creature \u2014 Halfling Horror",
+    "power": "4",
+    "toughness": "3",
+    "loyalty": null,
+    "keywords": [
+      "Menace"
+    ],
+    "oracle_text": "Menace (This creature can't be blocked except by two or more creatures.)",
+    "back_face": {
+      "name": "Meager Meal",
+      "mana_cost": "{B}",
+      "type_line": "Sorcery \u2014 Adventure",
+      "oracle_text": "Put a +1/+1 counter on up to one target creature. Target player gains 2 life. (Then exile this card. You may cast the creature later from exile.)",
+      "power": null,
+      "toughness": null,
+      "colors": []
+    }
+  },
+  "Hobbit Hole": {
+    "name": "Hobbit Hole",
+    "mana_cost": "",
+    "cmc": 0,
+    "colors": [],
+    "type_line": "Land",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "{T}, Sacrifice this land: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.\nHalflingcycling {4} ({4}, Discard this card: Search your library for a Halfling card, reveal it, put it into your hand, then shuffle.)"
+  },
+  "Great Fierce Bee": {
+    "name": "Great Fierce Bee",
+    "mana_cost": "{2}{B}",
+    "cmc": 3,
+    "colors": [
+      "B"
+    ],
+    "type_line": "Creature \u2014 Insect",
+    "power": "2",
+    "toughness": "2",
+    "loyalty": null,
+    "keywords": [
+      "Scry",
+      "Flying"
+    ],
+    "oracle_text": "Flying\nWhenever one or more other creatures die, scry 1. (Look at the top card of your library. You may put that card on the bottom.)"
+  },
+  "Bilbo's Deadly Slice": {
+    "name": "Bilbo's Deadly Slice",
+    "mana_cost": "{1}{B}{B}",
+    "cmc": 3,
+    "colors": [
+      "B"
+    ],
+    "type_line": "Instant",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "Destroy target creature."
+  },
+  "Supper for Spiders": {
+    "name": "Supper for Spiders",
+    "mana_cost": "{1}{B}",
+    "cmc": 2,
+    "colors": [
+      "B"
+    ],
+    "type_line": "Instant",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "Put onto the battlefield under your control all creature cards in your opponents' graveyards that were put there from the battlefield this turn. They are Food artifacts with \"{2}, {T}, Sacrifice this artifact: You gain 3 life.\" (They lose all other types and subtypes.)"
+  },
+  "Swamp": {
+    "name": "Swamp",
+    "mana_cost": "",
+    "cmc": 0,
+    "colors": [],
+    "type_line": "Basic Land \u2014 Swamp",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "({T}: Add {B}.)"
+  },
+  "Tidings of War": {
+    "name": "Tidings of War",
+    "mana_cost": "{R}",
+    "cmc": 1,
+    "colors": [
+      "R"
+    ],
+    "type_line": "Sorcery",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [
+      "Amass",
+      "Flashback"
+    ],
+    "oracle_text": "Amass Goblins 1. If this spell was cast from a graveyard, amass Goblins 3 instead. (To amass Goblins X, put X +1/+1 counters on an Army you control. It's also a Goblin. If you don't control an Army, create a 0/0 black Goblin Army creature token first.)\nFlashback {3}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)"
+  },
+  "Dori, Bearer of Friends": {
+    "name": "Dori, Bearer of Friends",
+    "mana_cost": "{2}{R}",
+    "cmc": 3,
+    "colors": [
+      "R"
+    ],
+    "type_line": "Legendary Creature \u2014 Dwarf Warrior",
+    "power": "3",
+    "toughness": "2",
+    "loyalty": null,
+    "keywords": [
+      "Treasure",
+      "Trample"
+    ],
+    "oracle_text": "Trample\nWhen Dori enters, create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")"
+  },
+  "Gundabad Opportunist": {
+    "name": "Gundabad Opportunist",
+    "mana_cost": "{3}{R}",
+    "cmc": 4,
+    "colors": [
+      "R"
+    ],
+    "type_line": "Creature \u2014 Goblin Rogue",
+    "power": "4",
+    "toughness": "2",
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "When this creature enters, exile the top card of your library. Until the end of your next turn, you may play that card."
+  },
+  "Gl\u00f3in the Mighty // Easy Pickings": {
+    "name": "Gl\u00f3in the Mighty // Easy Pickings",
+    "mana_cost": "{3}{R}",
+    "cmc": 4,
+    "colors": [
+      "R"
+    ],
+    "type_line": "Legendary Creature \u2014 Dwarf Warrior",
+    "power": "4",
+    "toughness": "3",
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "At the beginning of your first main phase, add {R}{R}.",
+    "back_face": {
+      "name": "Easy Pickings",
+      "mana_cost": "{2}{R}",
+      "type_line": "Sorcery \u2014 Adventure",
+      "oracle_text": "Easy Pickings deals 1 damage to each creature your opponents control. (Then exile this card. You may cast the creature later from exile.)",
+      "power": null,
+      "toughness": null,
+      "colors": []
+    }
+  },
+  "Giant's Boulder": {
+    "name": "Giant's Boulder",
+    "mana_cost": "{1}",
+    "cmc": 1,
+    "colors": [],
+    "type_line": "Artifact",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [
+      "Scry"
+    ],
+    "oracle_text": "When this artifact enters, scry 2. (Look at the top two cards of your library, then put any number of them on the bottom and the rest on top in any order.)\n{1}, {T}: Add one mana of any color.\n{7}, {T}, Sacrifice this artifact: Destroy target permanent."
+  },
+  "Goblin-town Flunkies": {
+    "name": "Goblin-town Flunkies",
+    "mana_cost": "{1}{R}",
+    "cmc": 2,
+    "colors": [
+      "R"
+    ],
+    "type_line": "Creature \u2014 Goblin Soldier",
+    "power": "1",
+    "toughness": "1",
+    "loyalty": null,
+    "keywords": [
+      "Amass",
+      "Haste"
+    ],
+    "oracle_text": "Haste\nWhen this creature enters, amass Goblins 1. (Put a +1/+1 counter on an Army you control. It's also a Goblin. If you don't control an Army, create a 0/0 black Goblin Army creature token first.)"
+  },
+  "Reverent Howl": {
+    "name": "Reverent Howl",
+    "mana_cost": "{2}{B}",
+    "cmc": 3,
+    "colors": [
+      "B"
+    ],
+    "type_line": "Instant",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "Choose one \u2014\n\u2022 Target player draws two cards and loses 2 life.\n\u2022 Target creature gets +2/+2 and gains lifelink until end of turn."
+  },
+  "Bolg of the North": {
+    "name": "Bolg of the North",
+    "mana_cost": "{3}{B}{R}",
+    "cmc": 5,
+    "colors": [
+      "B",
+      "R"
+    ],
+    "type_line": "Legendary Creature \u2014 Goblin Soldier",
+    "power": "5",
+    "toughness": "5",
+    "loyalty": null,
+    "keywords": [
+      "Amass"
+    ],
+    "oracle_text": "When Bolg enters, you may sacrifice another creature. When you do, Bolg deals damage equal to that creature's power to another target creature. If excess damage was dealt this way, amass Goblins X, where X is that excess damage. (Put X +1/+1 counters on an Army you control. It's also a Goblin. If you don't control an Army, create a 0/0 black Goblin Army creature token first.)"
+  },
+  "Rage into the Valley": {
+    "name": "Rage into the Valley",
+    "mana_cost": "{2}{B}",
+    "cmc": 3,
+    "colors": [
+      "B"
+    ],
+    "type_line": "Sorcery",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [
+      "Amass"
+    ],
+    "oracle_text": "You draw a card and lose 1 life.\nAmass Goblins 2. (Put two +1/+1 counters on an Army you control. It's also a Goblin. If you don't control an Army, create a 0/0 black Goblin Army creature token first.)"
+  },
+  "Smaug the Magnificent": {
+    "name": "Smaug the Magnificent",
+    "mana_cost": "{2}{R}{R}",
+    "cmc": 4,
+    "colors": [
+      "R"
+    ],
+    "type_line": "Legendary Creature \u2014 Dragon",
+    "power": "4",
+    "toughness": "3",
+    "loyalty": null,
+    "keywords": [
+      "Flying",
+      "Treasure",
+      "Haste"
+    ],
+    "oracle_text": "Flying, haste\nWhenever Smaug attacks, he deals damage equal to the number of Treasures you control to any target.\nAt the beginning of your upkeep, create a Treasure token."
+  },
+  "Stir Up Trouble": {
+    "name": "Stir Up Trouble",
+    "mana_cost": "{B}",
+    "cmc": 1,
+    "colors": [
+      "B"
+    ],
+    "type_line": "Sorcery",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "As an additional cost to cast this spell, sacrifice an artifact or creature or pay {4}.\nDestroy target creature."
+  },
+  "Down, Down to Goblin-town": {
+    "name": "Down, Down to Goblin-town",
+    "mana_cost": "{2}{B}",
+    "cmc": 3,
+    "colors": [
+      "B"
+    ],
+    "type_line": "Enchantment \u2014 Saga",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [
+      "Amass"
+    ],
+    "oracle_text": "(As this Saga enters and after your draw step, add a lore counter. Sacrifice after IV.)\nI \u2014 Target opponent reveals their hand. You choose a nonland card from it. That player discards that card.\nII \u2014 Amass Goblins 1. (Put a +1/+1 counter on an Army you control. It's also a Goblin. If you don't control an Army, create a 0/0 black Goblin Army creature token first.)\nIII, IV \u2014 Target opponent loses 1 life and you gain 1 life."
+  },
+  "The Sackville-Bagginses": {
+    "name": "The Sackville-Bagginses",
+    "mana_cost": "{1}{B}",
+    "cmc": 2,
+    "colors": [
+      "B"
+    ],
+    "type_line": "Legendary Creature \u2014 Halfling Citizen",
+    "power": "2",
+    "toughness": "2",
+    "loyalty": null,
+    "keywords": [
+      "Treasure"
+    ],
+    "oracle_text": "When The Sackville-Bagginses enter, you may sacrifice another creature or artifact. If you do, draw a card and create a Treasure token.\nWhenever you sacrifice a token, target opponent loses 1 life."
+  },
+  "Fearsome Goblin Pair": {
+    "name": "Fearsome Goblin Pair",
+    "mana_cost": "{2}{B/R}",
+    "cmc": 3,
+    "colors": [
+      "B",
+      "R"
+    ],
+    "type_line": "Creature \u2014 Goblin Soldier",
+    "power": "1",
+    "toughness": "1",
+    "loyalty": null,
+    "keywords": [
+      "Amass"
+    ],
+    "oracle_text": "When this creature dies, amass Goblins 4. (Put four +1/+1 counters on an Army you control. It's also a Goblin. If you don't control an Army, create a 0/0 black Goblin Army creature token first.)"
+  },
+  "Smaug, the Great Calamity // Spew Flame": {
+    "name": "Smaug, the Great Calamity // Spew Flame",
+    "mana_cost": "{5}{R}{R}",
+    "cmc": 7,
+    "colors": [
+      "R"
+    ],
+    "type_line": "Legendary Creature \u2014 Dragon",
+    "power": "5",
+    "toughness": "5",
+    "loyalty": null,
+    "keywords": [
+      "Flying"
+    ],
+    "oracle_text": "Flying",
+    "back_face": {
+      "name": "Spew Flame",
+      "mana_cost": "{4}{R}",
+      "type_line": "Sorcery \u2014 Adventure",
+      "oracle_text": "Spew Flame deals 5 damage to target creature. (Then exile this card. You may cast the creature later from exile.)",
+      "power": null,
+      "toughness": null,
+      "colors": []
+    }
   }
 }

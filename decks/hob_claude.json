@@ -1,0 +1,131 @@
+{
+  "source_file": "decks/hob_claude.txt",
+  "mainboard_count": 41,
+  "sections": {
+    "deck": [
+      {
+        "count": 2,
+        "name": "Giant's Boulder"
+      },
+      {
+        "count": 1,
+        "name": "Stir Up Trouble"
+      },
+      {
+        "count": 1,
+        "name": "Tidings of War"
+      },
+      {
+        "count": 2,
+        "name": "Goblin-town Flunkies"
+      },
+      {
+        "count": 1,
+        "name": "Supper for Spiders"
+      },
+      {
+        "count": 1,
+        "name": "The Sackville-Bagginses"
+      },
+      {
+        "count": 1,
+        "name": "Bilbo's Deadly Slice"
+      },
+      {
+        "count": 2,
+        "name": "Dori, Bearer of Friends"
+      },
+      {
+        "count": 1,
+        "name": "Down, Down to Goblin-town"
+      },
+      {
+        "count": 1,
+        "name": "Fearsome Goblin Pair"
+      },
+      {
+        "count": 1,
+        "name": "Great Fierce Bee"
+      },
+      {
+        "count": 1,
+        "name": "Rage into the Valley"
+      },
+      {
+        "count": 1,
+        "name": "Rage into the Valley"
+      },
+      {
+        "count": 1,
+        "name": "Reverent Howl"
+      },
+      {
+        "count": 1,
+        "name": "Gl\u00f3in the Mighty // Easy Pickings"
+      },
+      {
+        "count": 1,
+        "name": "Gl\u00f3in the Mighty // Easy Pickings"
+      },
+      {
+        "count": 1,
+        "name": "Gollum, Silent Slinker // Meager Meal"
+      },
+      {
+        "count": 1,
+        "name": "Gundabad Opportunist"
+      },
+      {
+        "count": 1,
+        "name": "Smaug the Magnificent"
+      },
+      {
+        "count": 1,
+        "name": "Bolg of the North"
+      },
+      {
+        "count": 1,
+        "name": "Smaug, the Great Calamity // Spew Flame"
+      },
+      {
+        "count": 2,
+        "name": "Hobbit Hole"
+      },
+      {
+        "count": 8,
+        "name": "Mountain"
+      },
+      {
+        "count": 7,
+        "name": "Swamp"
+      }
+    ],
+    "sideboard": [],
+    "commander": [],
+    "companion": []
+  },
+  "unique_card_names": [
+    "Bilbo's Deadly Slice",
+    "Bolg of the North",
+    "Dori, Bearer of Friends",
+    "Down, Down to Goblin-town",
+    "Fearsome Goblin Pair",
+    "Giant's Boulder",
+    "Gl\u00f3in the Mighty // Easy Pickings",
+    "Goblin-town Flunkies",
+    "Gollum, Silent Slinker // Meager Meal",
+    "Great Fierce Bee",
+    "Gundabad Opportunist",
+    "Hobbit Hole",
+    "Mountain",
+    "Rage into the Valley",
+    "Reverent Howl",
+    "Smaug the Magnificent",
+    "Smaug, the Great Calamity // Spew Flame",
+    "Stir Up Trouble",
+    "Supper for Spiders",
+    "Swamp",
+    "The Sackville-Bagginses",
+    "Tidings of War"
+  ]
+}

@@ -62,11 +62,17 @@ def to_entry(rec: dict, face_index=None) -> dict:
     """Convert one Scryfall card record (optionally a specific face of a
     double-faced/split card) into this repo's card_database.json shape."""
     faces = rec.get("card_faces") or []
+    explicit_face = face_index is not None
     use_face = face_index
-    if use_face is None and not rec.get("mana_cost") and faces:
-        use_face = 0  # DFC/meld looked up by its combined "Front // Back" name
+    if use_face is None and not rec.get("oracle_text") and faces:
+        # DFC/split/adventure cards looked up by their combined "Front //
+        # Back" name never carry oracle_text (or often mana_cost) at the
+        # top level -- that data only lives per-face. Fall back to face 0
+        # for "what does this card actually do" purposes, but keep the
+        # combined name (see below) since that's what was searched for.
+        use_face = 0
     front = _face_data(rec, use_face)
-    name = faces[use_face]["name"] if (use_face is not None and faces) else rec.get("name")
+    name = faces[use_face]["name"] if explicit_face else rec.get("name")
     loyalty = rec.get("loyalty")
     if use_face is not None and faces:
         loyalty = faces[use_face].get("loyalty", loyalty)
