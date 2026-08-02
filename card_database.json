@@ -725,5 +725,358 @@
       "toughness": null,
       "colors": []
     }
+  },
+  "Uneasy Partings": {
+    "name": "Uneasy Partings",
+    "mana_cost": "{3}{U}",
+    "cmc": 4,
+    "colors": [
+      "U"
+    ],
+    "type_line": "Instant",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "This spell costs {1} less to cast if it targets an attacking nontoken creature.\nTarget creature's owner puts it on their choice of the top or bottom of their library."
+  },
+  "Beorn, Reluctant Host // Till and Tend": {
+    "name": "Beorn, Reluctant Host // Till and Tend",
+    "mana_cost": "{4}{G}",
+    "cmc": 5,
+    "colors": [
+      "G"
+    ],
+    "type_line": "Legendary Creature \u2014 Human Bear Shapeshifter",
+    "power": "5",
+    "toughness": "5",
+    "loyalty": null,
+    "keywords": [
+      "Trample"
+    ],
+    "oracle_text": "Trample",
+    "back_face": {
+      "name": "Till and Tend",
+      "mana_cost": "{1}{G}",
+      "type_line": "Sorcery \u2014 Adventure",
+      "oracle_text": "You may play an additional land this turn. (Then exile this card. You may cast the creature later from exile.)",
+      "power": null,
+      "toughness": null,
+      "colors": []
+    }
+  },
+  "My Precious // Allure of Power": {
+    "name": "My Precious // Allure of Power",
+    "mana_cost": "{3}",
+    "cmc": 3,
+    "colors": [],
+    "type_line": "Legendary Artifact \u2014 Equipment",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [
+      "Equip"
+    ],
+    "oracle_text": "Equipped creature has hexproof and can't be blocked.\nEquip\u2014{2}, Pay 2 life.",
+    "back_face": {
+      "name": "Allure of Power",
+      "mana_cost": "{1}{B}",
+      "type_line": "Instant \u2014 Adventure",
+      "oracle_text": "As an additional cost to cast this spell, sacrifice a creature.\nDraw two cards.",
+      "power": null,
+      "toughness": null,
+      "colors": []
+    }
+  },
+  "Uncover the Moon-Letters": {
+    "name": "Uncover the Moon-Letters",
+    "mana_cost": "{3}{U}",
+    "cmc": 4,
+    "colors": [
+      "U"
+    ],
+    "type_line": "Enchantment",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "Whenever you cast a noncreature spell, you may draw X cards, where X is the amount of mana spent to cast that spell. If you do, discard two cards."
+  },
+  "Plunder the Trollshaws": {
+    "name": "Plunder the Trollshaws",
+    "mana_cost": "{1}{U}",
+    "cmc": 2,
+    "colors": [
+      "U"
+    ],
+    "type_line": "Instant",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [
+      "Flashback"
+    ],
+    "oracle_text": "Draw a card. If this spell was cast from a graveyard, draw two cards instead.\nFlashback {3}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)"
+  },
+  "Little Bear": {
+    "name": "Little Bear",
+    "mana_cost": "{2}{G}",
+    "cmc": 3,
+    "colors": [
+      "G"
+    ],
+    "type_line": "Creature \u2014 Bear",
+    "power": "3",
+    "toughness": "2",
+    "loyalty": null,
+    "keywords": [
+      "Flash"
+    ],
+    "oracle_text": "Flash\nWhen this creature enters, untap another target creature you control. If that creature is a Bear, put a +1/+1 counter on it."
+  },
+  "Troll Negotiations": {
+    "name": "Troll Negotiations",
+    "mana_cost": "{2}{G}{G}",
+    "cmc": 4,
+    "colors": [
+      "G"
+    ],
+    "type_line": "Sorcery",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [
+      "Fight"
+    ],
+    "oracle_text": "Put two +1/+1 counters on target creature you control. Then it fights target creature an opponent controls. (Each deals damage equal to its power to the other.)"
+  },
+  "Elvenking's Harper": {
+    "name": "Elvenking's Harper",
+    "mana_cost": "{1}{U}",
+    "cmc": 2,
+    "colors": [
+      "U"
+    ],
+    "type_line": "Creature \u2014 Elf Bard",
+    "power": "2",
+    "toughness": "2",
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "{4}{U}: Target creature can't be blocked this turn."
+  },
+  "Lakeshore Apothecary": {
+    "name": "Lakeshore Apothecary",
+    "mana_cost": "{1}{U}",
+    "cmc": 2,
+    "colors": [
+      "U"
+    ],
+    "type_line": "Creature \u2014 Human Cleric",
+    "power": "1",
+    "toughness": "2",
+    "loyalty": null,
+    "keywords": [
+      "Vigilance"
+    ],
+    "oracle_text": "Vigilance\nWhenever you draw your second card each turn, put a +1/+1 counter on this creature."
+  },
+  "Wood Elves": {
+    "name": "Wood Elves",
+    "mana_cost": "{2}{G}",
+    "cmc": 3,
+    "colors": [
+      "G"
+    ],
+    "type_line": "Creature \u2014 Elf Scout",
+    "power": "1",
+    "toughness": "1",
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "When this creature enters, search your library for a Forest card, put that card onto the battlefield, then shuffle."
+  },
+  "Ordinary Bear": {
+    "name": "Ordinary Bear",
+    "mana_cost": "{3}{G}",
+    "cmc": 4,
+    "colors": [
+      "G"
+    ],
+    "type_line": "Creature \u2014 Bear",
+    "power": "4",
+    "toughness": "5",
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": ""
+  },
+  "Bilbo, Luckwearer // Burglar's Plot": {
+    "name": "Bilbo, Luckwearer // Burglar's Plot",
+    "mana_cost": "{1}{U}",
+    "cmc": 2,
+    "colors": [
+      "U"
+    ],
+    "type_line": "Legendary Creature \u2014 Halfling Rogue",
+    "power": "1",
+    "toughness": "1",
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "Bilbo can't be blocked.\nWhenever Bilbo deals combat damage to a player, draw a card, then discard a card.",
+    "back_face": {
+      "name": "Burglar's Plot",
+      "mana_cost": "{4}{U}",
+      "type_line": "Sorcery \u2014 Adventure",
+      "oracle_text": "Exchange control of two target nonland permanents that share a card type. (Then exile this card. You may cast the creature later from exile.)",
+      "power": null,
+      "toughness": null,
+      "colors": []
+    }
+  },
+  "Elvenking's Halls": {
+    "name": "Elvenking's Halls",
+    "mana_cost": "",
+    "cmc": 0,
+    "colors": [],
+    "type_line": "Land",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "This land enters tapped.\n{T}: Add {G} or {U}.\n{2}{G}{U}, {T}, Sacrifice this land: Put two +1/+1 counters on target Elf you control. Activate only as a sorcery."
+  },
+  "Forest": {
+    "name": "Forest",
+    "mana_cost": "",
+    "cmc": 0,
+    "colors": [],
+    "type_line": "Basic Land \u2014 Forest",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "({T}: Add {G}.)"
+  },
+  "Guardian of the Halls": {
+    "name": "Guardian of the Halls",
+    "mana_cost": "{1}{G}",
+    "cmc": 2,
+    "colors": [
+      "G"
+    ],
+    "type_line": "Creature \u2014 Elf Soldier",
+    "power": "2",
+    "toughness": "2",
+    "loyalty": null,
+    "keywords": [
+      "Trample"
+    ],
+    "oracle_text": "Trample\n{5}{G}{G}: Put three +1/+1 counters on this creature."
+  },
+  "Warg Tactics": {
+    "name": "Warg Tactics",
+    "mana_cost": "{1}{G}",
+    "cmc": 2,
+    "colors": [
+      "G"
+    ],
+    "type_line": "Instant",
+    "power": null,
+    "toughness": null,
+    "loyalty": null,
+    "keywords": [],
+    "oracle_text": "Choose one \u2014\n\u2022 Destroy target creature with flying.\n\u2022 Put a +1/+1 counter on target creature you control. It gains trample and hexproof until end of turn. (It can't be the target of spells or abilities your opponents control.)"
+  },
+  "Lake-town Mariners // Gone Fishing": {
+    "name": "Lake-town Mariners // Gone Fishing",
+    "mana_cost": "{4}{U}{U}",
+    "cmc": 6,
+    "colors": [
+      "U"
+    ],
+    "type_line": "Creature \u2014 Human Citizen",
+    "power": "6",
+    "toughness": "5",
+    "loyalty": null,
+    "keywords": [
+      "Vigilance",
+      "Ward"
+    ],
+    "oracle_text": "Vigilance\nWard {2} (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {2}.)",
+    "back_face": {
+      "name": "Gone Fishing",
+      "mana_cost": "{3}{U}",
+      "type_line": "Instant \u2014 Adventure",
+      "oracle_text": "Exile two target creatures and/or lands you control, then return them to the battlefield under their owner's control.",
+      "power": null,
+      "toughness": null,
+      "colors": []
+    }
+  },
+  "Boughside Wanderers": {
+    "name": "Boughside Wanderers",
+    "mana_cost": "{4}{G}{G}",
+    "cmc": 6,
+    "colors": [
+      "G"
+    ],
+    "type_line": "Creature \u2014 Elf Scout",
+    "power": "4",
+    "toughness": "4",
+    "loyalty": null,
+    "keywords": [
+      "Landfall"
+    ],
+    "oracle_text": "When this creature enters, look at the top four cards of your library. You may reveal a permanent card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.\nLandfall \u2014 Whenever a land you control enters, this creature gets +2/+2 until end of turn."
+  },
+  "Thranduil, Sindarin Liege // Silvan Rally": {
+    "name": "Thranduil, Sindarin Liege // Silvan Rally",
+    "mana_cost": "{2}{G/U}{G/U}",
+    "cmc": 4,
+    "colors": [
+      "G",
+      "U"
+    ],
+    "type_line": "Legendary Creature \u2014 Elf Noble",
+    "power": "2",
+    "toughness": "3",
+    "loyalty": null,
+    "keywords": [
+      "Mill",
+      "Landfall"
+    ],
+    "oracle_text": "Other Elves you control get +1/+1.\nLandfall \u2014 Whenever a land you control enters, create a 1/1 green Elf creature token.",
+    "back_face": {
+      "name": "Silvan Rally",
+      "mana_cost": "{1}{G/U}{G/U}",
+      "type_line": "Sorcery \u2014 Adventure",
+      "oracle_text": "Mill four cards, then put up to two land cards from among them into your hand. (Then exile this card. You may cast the creature later from exile.)",
+      "power": null,
+      "toughness": null,
+      "colors": []
+    }
+  },
+  "Bilbo Baggins, Burglar // Take a Glance": {
+    "name": "Bilbo Baggins, Burglar // Take a Glance",
+    "mana_cost": "{2}{U}",
+    "cmc": 3,
+    "colors": [
+      "U"
+    ],
+    "type_line": "Legendary Creature \u2014 Halfling Rogue",
+    "power": "2",
+    "toughness": "1",
+    "loyalty": null,
+    "keywords": [
+      "Scry"
+    ],
+    "oracle_text": "When Bilbo Baggins enters, draw a card.",
+    "back_face": {
+      "name": "Take a Glance",
+      "mana_cost": "{U}",
+      "type_line": "Sorcery \u2014 Adventure",
+      "oracle_text": "Scry 2. (Then exile this card. You may cast the creature later from exile.)",
+      "power": null,
+      "toughness": null,
+      "colors": []
+    }
   }
 }

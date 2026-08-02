@@ -1,0 +1,122 @@
+{
+  "source_file": "decks/hob_edward.txt",
+  "mainboard_count": 40,
+  "sections": {
+    "deck": [
+      {
+        "count": 1,
+        "name": "Bilbo, Luckwearer // Burglar's Plot"
+      },
+      {
+        "count": 1,
+        "name": "Bilbo, Luckwearer // Burglar's Plot"
+      },
+      {
+        "count": 1,
+        "name": "Elvenking's Harper"
+      },
+      {
+        "count": 2,
+        "name": "Guardian of the Halls"
+      },
+      {
+        "count": 1,
+        "name": "Lakeshore Apothecary"
+      },
+      {
+        "count": 2,
+        "name": "Plunder the Trollshaws"
+      },
+      {
+        "count": 1,
+        "name": "Warg Tactics"
+      },
+      {
+        "count": 2,
+        "name": "Bilbo Baggins, Burglar // Take a Glance"
+      },
+      {
+        "count": 1,
+        "name": "Little Bear"
+      },
+      {
+        "count": 1,
+        "name": "My Precious // Allure of Power"
+      },
+      {
+        "count": 1,
+        "name": "Wood Elves"
+      },
+      {
+        "count": 1,
+        "name": "Ordinary Bear"
+      },
+      {
+        "count": 1,
+        "name": "Thranduil, Sindarin Liege // Silvan Rally"
+      },
+      {
+        "count": 1,
+        "name": "Troll Negotiations"
+      },
+      {
+        "count": 1,
+        "name": "Uncover the Moon-Letters"
+      },
+      {
+        "count": 1,
+        "name": "Uneasy Partings"
+      },
+      {
+        "count": 1,
+        "name": "Beorn, Reluctant Host // Till and Tend"
+      },
+      {
+        "count": 1,
+        "name": "Boughside Wanderers"
+      },
+      {
+        "count": 2,
+        "name": "Lake-town Mariners // Gone Fishing"
+      },
+      {
+        "count": 2,
+        "name": "Elvenking's Halls"
+      },
+      {
+        "count": 7,
+        "name": "Forest"
+      },
+      {
+        "count": 8,
+        "name": "Island"
+      }
+    ],
+    "sideboard": [],
+    "commander": [],
+    "companion": []
+  },
+  "unique_card_names": [
+    "Beorn, Reluctant Host // Till and Tend",
+    "Bilbo Baggins, Burglar // Take a Glance",
+    "Bilbo, Luckwearer // Burglar's Plot",
+    "Boughside Wanderers",
+    "Elvenking's Halls",
+    "Elvenking's Harper",
+    "Forest",
+    "Guardian of the Halls",
+    "Island",
+    "Lake-town Mariners // Gone Fishing",
+    "Lakeshore Apothecary",
+    "Little Bear",
+    "My Precious // Allure of Power",
+    "Ordinary Bear",
+    "Plunder the Trollshaws",
+    "Thranduil, Sindarin Liege // Silvan Rally",
+    "Troll Negotiations",
+    "Uncover the Moon-Letters",
+    "Uneasy Partings",
+    "Warg Tactics",
+    "Wood Elves"
+  ]
+}
