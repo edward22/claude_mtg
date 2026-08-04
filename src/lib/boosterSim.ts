@@ -1,4 +1,5 @@
 import type { PoolCard, ScryfallCard } from "../types";
+import { shuffle } from "./shuffle";
 
 function uid(): string {
   return Math.random().toString(36).slice(2) + Date.now().toString(36) + Math.random().toString(36).slice(2);
@@ -130,18 +131,6 @@ export function classifyCardsForBoosters(rawCards: ScryfallCard[]): BoosterCardP
   }
 
   return { commons, uncommons, rares, mythics, lands, warnings };
-}
-
-// `array.sort(() => Math.random() - 0.5)` is a common but genuinely biased
-// way to shuffle - the result distribution depends on the sort algorithm's
-// comparison pattern, not a uniform permutation. Fisher-Yates is correct.
-function shuffle<T>(pool: T[]): T[] {
-  const result = [...pool];
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
-  return result;
 }
 
 function sampleWithoutReplacement<T>(pool: T[], count: number): T[] {

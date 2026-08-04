@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { cardImageUrl } from "../lib/cardImage";
+import { printImageUrl } from "../lib/cardImage";
 import { chunk, computeLayout } from "../lib/printLayout";
+import { shuffle } from "../lib/shuffle";
 import type { PoolCard } from "../types";
 import "./PrintSheet.css";
 
@@ -70,13 +71,21 @@ export default function PrintSheet({ cards, cardsPerPage, onProgress, onDone }: 
   const onProgressRef = useRef(onProgress);
   onProgressRef.current = onProgress;
 
+  // Shuffled once, on mount, and never again - so the print order stays put
+  // through the preload/ready phases instead of re-randomizing on every
+  // render (e.g. each preload progress tick). Randomized so a fresh sealed
+  // pool doesn't come off the printer pre-sorted by rarity/color/mana value.
+  const [shuffledCards] = useState(() => shuffle(cards));
+
   const layout = computeLayout(cardsPerPage);
-  const pages = chunk(cards, layout.cardsPerPage);
+  const pages = chunk(shuffledCards, layout.cardsPerPage);
 
   // Phase 1: warm the browser's cache for every unique image, a few at a time.
   useEffect(() => {
     let cancelled = false;
-    const uniqueUrls = [...new Set(cards.map((pc) => cardImageUrl(pc.card)).filter((u): u is string => !!u))];
+    const uniqueUrls = [
+      ...new Set(shuffledCards.map((pc) => printImageUrl(pc.card, cardsPerPage)).filter((u): u is string => !!u)),
+    ];
     preloadAll(uniqueUrls, (loaded, total) => !cancelled && onProgressRef.current(loaded, total)).then(() => {
       if (!cancelled) setPreloaded(true);
     });
@@ -145,7 +154,7 @@ export default function PrintSheet({ cards, cardsPerPage, onProgress, onDone }: 
           }}
         >
           {pageCards.map((pc) => {
-            const url = cardImageUrl(pc.card);
+            const url = printImageUrl(pc.card, cardsPerPage);
             return (
               <div className="print-card" key={pc.uid}>
                 {url ? (
