@@ -48,6 +48,40 @@ function isMainRarityCard(card: ScryfallCard): boolean {
   );
 }
 
+function leadingCollectorNumber(card: ScryfallCard): number {
+  const match = card.collector_number.match(/\d+/);
+  return match ? parseInt(match[0], 10) : Number.MAX_SAFE_INTEGER;
+}
+
+/**
+ * Collapses alternate treatments of the same card (showcase, extended art,
+ * borderless, ...) down to one printing each, keeping the lowest collector
+ * number - by Magic's numbering convention that's the main-set printing;
+ * bonus/showcase treatments get appended after it with higher numbers.
+ *
+ * Only used for the "official booster data isn't available" fallback pool.
+ * The primary boosterEligible pool is trusted as-is: Scryfall's per-printing
+ * `booster` flag is what actually distinguishes which specific treatments
+ * appear in packs (and modern Play Boosters can legitimately include a
+ * showcase/borderless treatment as its own separate pull), so deduping
+ * there could incorrectly remove a real possibility. The fallback pool has
+ * no such distinction - it's just "every card of this rarity" - so without
+ * this it would treat a bonus-sheet showcase printing as an equally likely
+ * pull alongside the regular one, e.g. a card appearing at both a low
+ * main-set number and a high bonus-sheet number would get drawn twice as
+ * often as anything else.
+ */
+function dedupeAlternateTreatments(cards: ScryfallCard[]): ScryfallCard[] {
+  const byName = new Map<string, ScryfallCard>();
+  for (const card of cards) {
+    const existing = byName.get(card.name);
+    if (!existing || leadingCollectorNumber(card) < leadingCollectorNumber(existing)) {
+      byName.set(card.name, card);
+    }
+  }
+  return [...byName.values()];
+}
+
 export interface BoosterCardPools {
   commons: ScryfallCard[];
   uncommons: ScryfallCard[];
@@ -71,7 +105,7 @@ export function classifyCardsForBoosters(rawCards: ScryfallCard[]): BoosterCardP
     pool.filter((c) => c.rarity === rarity);
 
   const boosterEligible = cards.filter((c) => c.booster && isMainRarityCard(c));
-  const allMainRarity = cards.filter(isMainRarityCard);
+  const allMainRarity = dedupeAlternateTreatments(cards.filter(isMainRarityCard));
 
   // Require a reasonable minimum for a 15-card pack to look "real" - if the
   // booster-flagged pool is too thin (common for spoiler-only/unreleased
