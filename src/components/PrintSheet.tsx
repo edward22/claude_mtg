@@ -84,7 +84,7 @@ export default function PrintSheet({ cards, cardsPerPage, onProgress, onDone }: 
   useEffect(() => {
     let cancelled = false;
     const uniqueUrls = [
-      ...new Set(shuffledCards.map((pc) => printImageUrl(pc.card, cardsPerPage)).filter((u): u is string => !!u)),
+      ...new Set(shuffledCards.map((pc) => printImageUrl(pc.card)).filter((u): u is string => !!u)),
     ];
     preloadAll(uniqueUrls, (loaded, total) => !cancelled && onProgressRef.current(loaded, total)).then(() => {
       if (!cancelled) setPreloaded(true);
@@ -154,7 +154,7 @@ export default function PrintSheet({ cards, cardsPerPage, onProgress, onDone }: 
           }}
         >
           {pageCards.map((pc) => {
-            const url = printImageUrl(pc.card, cardsPerPage);
+            const url = printImageUrl(pc.card);
             return (
               <div className="print-card" key={pc.uid}>
                 {url ? (
